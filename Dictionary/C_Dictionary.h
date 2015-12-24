@@ -32,5 +32,6 @@ public:
 	void addElement(std::string english_string, std::string czech_string);
 	int hashString(std::string val);
 	void read_data();
+	void get_from_table(std::string en_string);
 };
 

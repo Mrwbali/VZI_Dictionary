@@ -1,5 +1,6 @@
 #include "Parser.h"
 #include "C_Dictionary.h"
+#include <windows.h>
 class C_Dictionary;
 Parser::Parser()
 {
@@ -36,7 +37,8 @@ void Parser::read_data(C_Dictionary *val)
 	std::ifstream dictionary_file;
 	std::string cz_string, en_string;
 	dictionary_file.open(file_string_, std::ifstream::in);
-	int i = 0;
+	//int i = 0;
+	std::cout << "Parsing start." << std::endl;
 	while (!dictionary_file.eof())
 	{
 		std::string line;
@@ -44,16 +46,14 @@ void Parser::read_data(C_Dictionary *val)
 		std::size_t pos_t = 0;
 		std::size_t pos_t2 = 0;
 		pos_t = line.find('\t');
-		pos_t2 = line.find('\t', pos_t+1);
 		en_string = line.substr(0, pos_t);
-		pos_t2 = line.find('\t');
-		cz_string = line.substr(pos_t+1, pos_t2);
-		std::cout <<en_string << "	" << cz_string << i << std::endl;
-		i++;
-		std::cout << en_string << " " << cz_string << i << std::endl;
+		pos_t2 = line.find('\t', pos_t + 1);
+		cz_string = line.substr(pos_t+1, pos_t2 - (pos_t+1));
+		//std::cout <<en_string << "	" << cz_string << i << std::endl;
+		//i++;
 		val->addElement(en_string, cz_string);
 	}
-
+	std::cout << "Parsing complete." << std::endl;
 
 }
 

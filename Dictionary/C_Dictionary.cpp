@@ -9,7 +9,6 @@ C_Dictionary::C_Dictionary()
 C_Dictionary::C_Dictionary(std::string dict_file_string)
 {	
 	parser_parser = Parser(dict_file_string);
-	std::list<Element*> tmplst;
 	size_of_table_i_ = parser_parser.count_size_of_file();
 	dict_vector_.resize(size_of_table_i_);
 }
@@ -24,10 +23,7 @@ void C_Dictionary::addElement(std::string english_string, std::string czech_stri
 	Element* temp = new Element();
 	temp->english_string_ = english_string;
 	temp->czech_string_ = czech_string;
-	std::list<Element*> tempList = dict_vector_.at(hashString(english_string));
-	tempList.push_back(temp);
-	int hash = hashString(english_string);
-	dict_vector_.at(hashString(english_string)) = tempList;
+	dict_vector_.at(hashString(english_string)).push_back( temp );
 }
 
 int C_Dictionary::hashString(std::string val)
@@ -46,6 +42,18 @@ int C_Dictionary::hashString(std::string val)
 void C_Dictionary::read_data()
 {
 	parser_parser.read_data(this);
+}
+
+void C_Dictionary::get_from_table(std::string en_string)
+{	
+	for (auto i : dict_vector_.at(hashString( en_string )))
+	{	
+		if (i->english_string_ == en_string)
+		{
+			std::cout << i->czech_string_ << std::endl;
+		}
+	}
+	
 }
 
 void C_Dictionary::set_size_of_table_i(int size_of_table_i)
