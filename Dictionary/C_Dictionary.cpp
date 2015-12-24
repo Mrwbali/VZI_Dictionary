@@ -10,7 +10,9 @@ C_Dictionary::C_Dictionary(std::string dict_file_string)
 {	
 	parser_parser = Parser(dict_file_string);
 	size_of_table_i_ = parser_parser.count_size_of_file();
+	std::cout << "Resizing vector. Start" << std::endl;
 	dict_vector_.resize(size_of_table_i_);
+	std::cout << "Resizing vector. Complete" << std::endl;
 }
 
 
@@ -50,7 +52,7 @@ void C_Dictionary::get_from_table(std::string en_string)
 	{	
 		if (i->english_string_ == en_string)
 		{
-			std::cout << i->czech_string_ << std::endl;
+			std::cout << "			"<< i->czech_string_ << std::endl;
 		}
 	}
 	

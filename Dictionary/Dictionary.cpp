@@ -21,10 +21,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::string en_string;
 	C_Dictionary dictionary = C_Dictionary("../slovnik.txt");
 	dictionary.read_data();
-	std::cin >> en_string;
-	dictionary.get_from_table(en_string);
-	getchar();
-	
+	std::cout << "Input english word. for end type: konec." << std::endl;
+	while (en_string != "konec")
+	{
+		std::cin >> en_string;
+		dictionary.get_from_table(en_string);
+	}
+	std::cout << "Closing. Please wait...";
 	return 0;
 }
 
