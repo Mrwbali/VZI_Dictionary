@@ -6,7 +6,6 @@
 class C_Dictionary;
 class Parser
 {
-	class Hashtable;
 
 public:
 
